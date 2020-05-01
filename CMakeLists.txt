@@ -1,11 +1,7 @@
 
 cmake_minimum_required(VERSION 2.8)
 
-project(shoom)
-
 option(SHOOM_BUILD_TESTS "Build tests for shoom" ON)
-
-include_directories("include")
 
 if (SHOOM_BUILD_TESTS)
     enable_testing()
@@ -25,6 +21,7 @@ set (SOURCES
 endif()
 
 add_library(shoom STATIC ${SOURCES})
+target_include_directories(shoom PUBLIC include/)
 
 if (${CMAKE_GENERATOR} MATCHES "Visual")
     target_compile_options(shoom PRIVATE -W3 -EHsc)
